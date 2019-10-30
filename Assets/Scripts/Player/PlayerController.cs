@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController _instance;
+
     [SerializeField]
     private Vector3 _startPos;
 
@@ -11,6 +13,18 @@ public class PlayerController : MonoBehaviour
     private float downForce;
     private bool isDead = false;
     private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     void Start()
     {
@@ -22,6 +36,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             PushDown();
@@ -43,5 +58,10 @@ public class PlayerController : MonoBehaviour
         // When collide with obstacle kill player
         isDead = true;
 	}
+
+    public void ActivateGravity()
+    {
+        rb.gravityScale = 1f;
+    }
 
 }
