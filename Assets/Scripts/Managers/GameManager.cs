@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
 
+    // References
+    [SerializeField]
+    private SceneManager sceneManager;
+    [SerializeField]
+    private PlayerController playerController;
+    [SerializeField]
+    private LevelManager levelManager;
+
     [SerializeField]
     private int targetFrameRate = 30;
 
@@ -30,43 +38,83 @@ public class GameManager : MonoBehaviour
         // Initial setup
         Application.targetFrameRate = targetFrameRate;
 
-        PauseGame();
+        PrepareGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PrepareGame()
     {
-        // If game hasn't started and mouse touch screen
-        if (startGame == false && Input.GetMouseButtonDown(0))
-        {
-            StartGame();
-            
-        }
+        PauseGame();
+        gameOver = false;
+        // Set up the game level
+        // Player at start position
+        playerController.ResetPlayer();
+        // Level at start position
+        levelManager.LoadLevel();
     }
+
 
     public void StartGame()
     {
         startGame = true;
+        playerController.SetOnTouch();
+        sceneManager.MainMenuDisable();
         Time.timeScale = 1f;
+
+        // Enable Game GUI
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
         gameOver = true;
-        startGame = false;
 
-        //TODO :- Show Game over screen
+        // This can't be here until game refresh
+        startGame = false;
+        playerController.DisableTouch();
+        sceneManager.GameOverEnable();
     }
 
     public void LevelComplete()
     {
         Debug.Log("Completed Level");
+        gameOver = true;
+
+        // TEST
+        startGame = false;
+        playerController.DisableTouch();
+
+        sceneManager.LevelCompleteEnable();
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0f;
+    }
+
+
+    public void TapToRestart()
+    {
+        sceneManager.GameOverDisable();
+        sceneManager.MainMenuEnable();
+
+        // Destroy Level
+        levelManager.DestroyCurrentLevel();
+        // Prepare Game
+        PrepareGame();
+        
+    }
+
+    public void NextLevel()
+    {
+        sceneManager.LevelCompleteDisable();
+        sceneManager.MainMenuEnable();
+
+        // Destroy Level
+        levelManager.DestroyCurrentLevel();
+
+        // Increase Level
+        levelManager.LevelUp();
+        PrepareGame();
     }
 
 }
