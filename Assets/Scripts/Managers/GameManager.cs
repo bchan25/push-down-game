@@ -42,16 +42,6 @@ public class GameManager : MonoBehaviour
    
     void Update()
     {
-        // If game hasn't started and mouse touch screen
-        if(startGame == false)
-        {
-            
-            if (Input.GetMouseButtonDown(0) && gameOver == false)
-            {
-                StartGame();
-
-            }
-        }
 
     }
 
