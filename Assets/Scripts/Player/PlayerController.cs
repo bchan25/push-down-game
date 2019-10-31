@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool isDead = false;
     private Rigidbody2D rb;
 
+    private bool canTouch = false;
+
     private void Awake()
     {
         if (_instance == null)
@@ -39,10 +41,14 @@ public class PlayerController : MonoBehaviour
         if (!GameManager._instance.startGame)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (canTouch)
         {
-            PushDown();
+            if (Input.GetMouseButtonDown(0))
+            {
+                PushDown();
+            }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,6 +76,14 @@ public class PlayerController : MonoBehaviour
         isDead = true;
 	}
 
-   
+    public void SetOnTouch()
+    {
+        canTouch = true;
+    }
+
+    public void DisableTouch()
+    {
+        canTouch = false;
+    }
 
 }

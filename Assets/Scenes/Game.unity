@@ -607,8 +607,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 747865306}
+  playerController: {fileID: 1450812599}
   targetFrameRate: 30
-  gameOver: 1
+  gameOver: 0
   startGame: 0
 --- !u!114 &747865306
 MonoBehaviour:

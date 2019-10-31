@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     // References
     [SerializeField]
     private SceneManager sceneManager;
+    [SerializeField]
+    private PlayerController playerController;
 
     [SerializeField]
     private int targetFrameRate = 30;
@@ -37,20 +39,26 @@ public class GameManager : MonoBehaviour
         PauseGame();
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         // If game hasn't started and mouse touch screen
-        if (startGame == false && Input.GetMouseButtonDown(0))
+        if(startGame == false)
         {
-            StartGame();
             
+            if (Input.GetMouseButtonDown(0) && gameOver == false)
+            {
+                StartGame();
+
+            }
         }
+
     }
 
     public void StartGame()
     {
         startGame = true;
+        playerController.SetOnTouch();
         sceneManager.MainMenuDisable();
         Time.timeScale = 1f;
     }
@@ -62,13 +70,18 @@ public class GameManager : MonoBehaviour
 
         // This can't be here until game refresh
         startGame = false;
-
+        playerController.DisableTouch();
         sceneManager.GameOverEnable();
     }
 
     public void LevelComplete()
     {
         Debug.Log("Completed Level");
+        gameOver = true;
+
+        // TEST
+        startGame = false;
+        playerController.DisableTouch();
 
         sceneManager.LevelCompleteEnable();
     }
