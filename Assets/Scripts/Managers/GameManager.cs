@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver = false;
     public bool startGame = false;
+
+    // Progress Bar
+    public Slider progressBar;
+    // Distance from the start
+    float distance;
+    // Hold the distance travel of the finish line
+    float distanceTravelled = 0;
+    // store the recent position of the finish line
+    Vector3 lastPos;
+
 
     private void Awake()
     {
@@ -41,6 +51,19 @@ public class GameManager : MonoBehaviour
         PrepareGame();
     }
 
+    private void Update()
+    {
+        if (startGame)
+        {
+            distanceTravelled += Vector3.Distance(levelManager.GetTheFinishLine().position, lastPos);
+            lastPos = levelManager.GetTheFinishLine().position;
+            // Update the progress bar * 1 give value 0 to 1
+            progressBar.value = (distanceTravelled / distance) * 1;
+        }
+        
+
+    }
+
     public void PrepareGame()
     {
         PauseGame();
@@ -48,8 +71,14 @@ public class GameManager : MonoBehaviour
         // Set up the game level
         // Player at start position
         playerController.ResetPlayer();
-        // Level at start position
         levelManager.LoadLevel();
+
+        distanceTravelled = 0;
+
+        // Process Bar
+        distance = Vector3.Distance(playerController.transform.position, levelManager.GetTheFinishLine().position);
+        lastPos = levelManager.GetTheFinishLine().position;
+
     }
 
 
@@ -58,9 +87,9 @@ public class GameManager : MonoBehaviour
         startGame = true;
         playerController.SetOnTouch();
         sceneManager.MainMenuDisable();
+        sceneManager.GameGuiEnable();
         Time.timeScale = 1f;
-
-        // Enable Game GUI
+        
     }
 
     public void GameOver()
@@ -70,7 +99,9 @@ public class GameManager : MonoBehaviour
 
         // This can't be here until game refresh
         startGame = false;
+        progressBar.value = 0;
         playerController.DisableTouch();
+        sceneManager.GameGuiDisable();
         sceneManager.GameOverEnable();
     }
 
@@ -81,8 +112,9 @@ public class GameManager : MonoBehaviour
 
         // TEST
         startGame = false;
+        progressBar.value = 0;
         playerController.DisableTouch();
-
+        sceneManager.GameGuiDisable();
         sceneManager.LevelCompleteEnable();
     }
 
@@ -99,6 +131,7 @@ public class GameManager : MonoBehaviour
 
         // Destroy Level
         levelManager.DestroyCurrentLevel();
+       
         // Prepare Game
         PrepareGame();
         

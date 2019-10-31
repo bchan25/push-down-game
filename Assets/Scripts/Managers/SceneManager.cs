@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
     public GameObject mainMenuCanvas;
     public GameObject gameOverCanvas;
     public GameObject levelCompleteCanvas;
+    public GameObject gameGuiCanvas;
 
     // Main Menu
     public void MainMenuEnable()
@@ -40,6 +41,18 @@ public class SceneManager : MonoBehaviour
     public void LevelCompleteDisable()
     {
         levelCompleteCanvas.SetActive(false);
+    }
+
+    // Game GUI
+    
+    public void GameGuiEnable()
+    {
+        gameGuiCanvas.SetActive(true);
+    }
+
+    public void GameGuiDisable()
+    {
+        gameGuiCanvas.SetActive(false);
     }
 
 }
