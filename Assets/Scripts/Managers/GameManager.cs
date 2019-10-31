@@ -52,7 +52,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("Game Over");
+        gameOver = true;
+        startGame = false;
 
+        //TODO :- Show Game over screen
     }
 
     public void LevelComplete()
