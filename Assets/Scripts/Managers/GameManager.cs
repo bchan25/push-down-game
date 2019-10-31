@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
 
+    // References
+    [SerializeField]
+    private SceneManager sceneManager;
+
     [SerializeField]
     private int targetFrameRate = 30;
 
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         startGame = true;
+        sceneManager.MainMenuDisable();
         Time.timeScale = 1f;
     }
 
@@ -54,14 +59,18 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         gameOver = true;
+
+        // This can't be here until game refresh
         startGame = false;
 
-        //TODO :- Show Game over screen
+        sceneManager.GameOverEnable();
     }
 
     public void LevelComplete()
     {
         Debug.Log("Completed Level");
+
+        sceneManager.LevelCompleteEnable();
     }
 
     public void PauseGame()
