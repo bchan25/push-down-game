@@ -10,8 +10,11 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        // TODO: Only move when Game Started
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        if (GameManager._instance.startGame)
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+        
 
     }
 }
