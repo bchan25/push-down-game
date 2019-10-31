@@ -104,4 +104,17 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void NextLevel()
+    {
+        sceneManager.LevelCompleteDisable();
+        sceneManager.MainMenuEnable();
+
+        // Destroy Level
+        levelManager.DestroyCurrentLevel();
+
+        // Increase Level
+        levelManager.LevelUp();
+        PrepareGame();
+    }
+
 }

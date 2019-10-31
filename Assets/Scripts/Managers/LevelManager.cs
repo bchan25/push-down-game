@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> levels;
 
     private int levelIndex = 0;
+    [SerializeField]
+    private int currentLevel = 0;
 
 
     public GameObject spawnLevel;
@@ -21,5 +23,10 @@ public class LevelManager : MonoBehaviour
     public void DestroyCurrentLevel()
     {
         Destroy(spawnLevel.gameObject);
+    }
+
+    public void LevelUp()
+    {
+        currentLevel++;
     }
 }
