@@ -8,7 +8,7 @@ public class FinishLevel : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
-            Debug.Log("Level Completed");
+            GameManager._instance.LevelComplete();
         }
     }
 }

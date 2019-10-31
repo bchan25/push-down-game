@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (!GameManager._instance.startGame)
+            return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -59,9 +61,6 @@ public class PlayerController : MonoBehaviour
         isDead = true;
 	}
 
-    public void ActivateGravity()
-    {
-        rb.gravityScale = 1f;
-    }
+   
 
 }

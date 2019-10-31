@@ -25,11 +25,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // Initial setup
         Application.targetFrameRate = targetFrameRate;
+
+        PauseGame();
     }
 
     // Update is called once per frame
@@ -38,8 +39,30 @@ public class GameManager : MonoBehaviour
         // If game hasn't started and mouse touch screen
         if (startGame == false && Input.GetMouseButtonDown(0))
         {
-            startGame = true;
-            PlayerController._instance.ActivateGravity();
+            StartGame();
+            
         }
     }
+
+    public void StartGame()
+    {
+        startGame = true;
+        Time.timeScale = 1f;
+    }
+
+    public void GameOver()
+    {
+
+    }
+
+    public void LevelComplete()
+    {
+        Debug.Log("Completed Level");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
 }
