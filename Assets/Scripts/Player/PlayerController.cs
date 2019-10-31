@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float downForce;
-    private bool isDead = false;
     private Rigidbody2D rb;
 
     private bool canTouch = false;
@@ -56,7 +55,9 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Obstacle"))
         {
             GameManager._instance.GameOver();
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            // Set Active
+            gameObject.SetActive(false);
         }
     }
 
@@ -70,11 +71,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(new Vector2(0, -downForce));
     }
 
-    void Die()
-	{
-        // When collide with obstacle kill player
-        isDead = true;
-	}
 
     public void SetOnTouch()
     {
@@ -84,6 +80,14 @@ public class PlayerController : MonoBehaviour
     public void DisableTouch()
     {
         canTouch = false;
+    }
+
+
+    public void ResetPlayer()
+    {
+        gameObject.SetActive(true);
+        transform.position = _startPos;
+        transform.localRotation = Quaternion.identity;
     }
 
 }

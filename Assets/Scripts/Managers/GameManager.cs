@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private SceneManager sceneManager;
     [SerializeField]
     private PlayerController playerController;
+    [SerializeField]
+    private LevelManager levelManager;
 
     [SerializeField]
     private int targetFrameRate = 30;
@@ -36,14 +38,20 @@ public class GameManager : MonoBehaviour
         // Initial setup
         Application.targetFrameRate = targetFrameRate;
 
-        PauseGame();
+        PrepareGame();
     }
 
-   
-    void Update()
+    public void PrepareGame()
     {
-
+        PauseGame();
+        gameOver = false;
+        // Set up the game level
+        // Player at start position
+        playerController.ResetPlayer();
+        // Level at start position
+        levelManager.LoadLevel();
     }
+
 
     public void StartGame()
     {
@@ -51,6 +59,8 @@ public class GameManager : MonoBehaviour
         playerController.SetOnTouch();
         sceneManager.MainMenuDisable();
         Time.timeScale = 1f;
+
+        // Enable Game GUI
     }
 
     public void GameOver()
@@ -79,6 +89,19 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+    }
+
+
+    public void TapToRestart()
+    {
+        sceneManager.GameOverDisable();
+        sceneManager.MainMenuEnable();
+
+        // Destroy Level
+        levelManager.DestroyCurrentLevel();
+        // Prepare Game
+        PrepareGame();
+        
     }
 
 }

@@ -9,20 +9,17 @@ public class LevelManager : MonoBehaviour
 
     private int levelIndex = 0;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject spawnLevel;
+
+
+    public void LoadLevel()
     {
-        LoadLevel(levelIndex);
+        spawnLevel =  Instantiate(levels[levelIndex], levels[levelIndex].transform.position, levels[levelIndex].transform.rotation);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyCurrentLevel()
     {
-        
-    }
-
-    void LoadLevel(int level)
-    {
-        Instantiate(levels[level], levels[level].transform.position, levels[level].transform.rotation);
+        Destroy(spawnLevel.gameObject);
     }
 }
