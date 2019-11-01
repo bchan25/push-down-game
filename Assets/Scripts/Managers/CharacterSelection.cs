@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterSelection : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> characters;
+    private List<GameObject> unlockCharacters;
 
     public GameObject player;
     private SpriteRenderer playerSpriteRenderer;
@@ -16,8 +16,8 @@ public class CharacterSelection : MonoBehaviour
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
 
         // Test
-        playerSpriteRenderer.sprite = characters[1].GetComponent<SpriteRenderer>().sprite;
-        playerSpriteRenderer.color = characters[1].GetComponent<SpriteRenderer>().color;
+        playerSpriteRenderer.sprite = unlockCharacters[1].GetComponent<SpriteRenderer>().sprite;
+        playerSpriteRenderer.color = unlockCharacters[1].GetComponent<SpriteRenderer>().color;
 
     }
 
@@ -27,15 +27,15 @@ public class CharacterSelection : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             // Test
-            playerSpriteRenderer.sprite = characters[0].GetComponent<SpriteRenderer>().sprite;
-            playerSpriteRenderer.color = characters[0].GetComponent<SpriteRenderer>().color;
+            playerSpriteRenderer.sprite = unlockCharacters[0].GetComponent<SpriteRenderer>().sprite;
+            playerSpriteRenderer.color = unlockCharacters[0].GetComponent<SpriteRenderer>().color;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             // Test
-            playerSpriteRenderer.sprite = characters[1].GetComponent<SpriteRenderer>().sprite;
-            playerSpriteRenderer.color = characters[1].GetComponent<SpriteRenderer>().color;
+            playerSpriteRenderer.sprite = unlockCharacters[1].GetComponent<SpriteRenderer>().sprite;
+            playerSpriteRenderer.color = unlockCharacters[1].GetComponent<SpriteRenderer>().color;
         }
     }
 }
