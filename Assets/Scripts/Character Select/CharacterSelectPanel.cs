@@ -14,6 +14,7 @@ public class CharacterSelectPanel : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
 
     private SceneManager sceneManager;
+    private CoinManager coinManager;
 
     public bool unlocked = false;
     public int cost = 0;
@@ -22,6 +23,8 @@ public class CharacterSelectPanel : MonoBehaviour
     void Start()
     {
         sceneManager = FindObjectOfType<SceneManager>();
+        coinManager = FindObjectOfType<CoinManager>();
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
 
@@ -66,7 +69,20 @@ public class CharacterSelectPanel : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cost you this amount of coins " + cost);
+                if(coinManager.Remove(cost))
+                {
+                    unlocked = true;
+                    playerSpriteRenderer.sprite = character.sprite;
+                    playerSpriteRenderer.color = character.color;
+
+                    SetUpButtonText();
+                    // Disable Screen
+                    sceneManager.CharacterSelectionCanvasDisable();
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }
