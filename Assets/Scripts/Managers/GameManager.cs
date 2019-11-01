@@ -61,8 +61,9 @@ public class GameManager : MonoBehaviour
             progressBar.value = (distanceTravelled / distance) * 1;
         }
         
-
     }
+
+    // Game States
 
     public void PrepareGame()
     {
