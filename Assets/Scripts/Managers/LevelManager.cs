@@ -10,8 +10,10 @@ public class LevelManager : MonoBehaviour
     // The level to choose from array
     private int levelIndex = 0;
     [SerializeField]
-    private int currentLevel = 0;
+    private int currentLevel = 1;
 
+    [SerializeField]
+    private int nextLevel = 2;
     
 
     public GameObject spawnLevel;
@@ -31,7 +33,9 @@ public class LevelManager : MonoBehaviour
             // Random a level
             levelIndex = Random.Range(0, levels.Count);
         }
-       
+
+        
+
         spawnLevel = Instantiate(levels[levelIndex], levels[levelIndex].transform.position, levels[levelIndex].transform.rotation);
         finishLine = spawnLevel.transform.Find("Finish Line");
         
@@ -45,13 +49,26 @@ public class LevelManager : MonoBehaviour
     public void LevelUp()
     {
         currentLevel++;
-        levelIndex = currentLevel;
+        levelIndex++;
+
+        nextLevel++;
     }
 
     // Get the finish line;
     public Transform GetTheFinishLine()
     {
         return finishLine;
+    }
+
+    // Level Gui numbers
+    public string GetCurrentLevel()
+    {
+        return currentLevel.ToString();
+    }
+
+    public string GetNextLevel()
+    {
+        return nextLevel.ToString();
     }
 
 }

@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     // store the recent position of the finish line
     Vector3 lastPos;
 
+    // GUI
+    public Text currentLevelLabel;
+    public Text nextLevelLabel;
 
     private void Awake()
     {
@@ -89,6 +92,11 @@ public class GameManager : MonoBehaviour
         playerController.SetOnTouch();
         sceneManager.MainMenuDisable();
         sceneManager.GameGuiEnable();
+
+        // Update GUI
+        currentLevelLabel.text = levelManager.GetCurrentLevel();
+        nextLevelLabel.text = levelManager.GetNextLevel();
+
         Time.timeScale = 1f;
         
     }
