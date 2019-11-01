@@ -71,4 +71,10 @@ public class LevelManager : MonoBehaviour
         return nextLevel.ToString();
     }
 
+    // Score Manager
+    public int GetCurrentLevelInt()
+    {
+        return currentLevel;
+    }
+
 }
