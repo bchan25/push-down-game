@@ -32,9 +32,13 @@ public class GameManager : MonoBehaviour
     // store the recent position of the finish line
     Vector3 lastPos;
 
-    // GUI
+    // Game GUI
     public Text currentLevelLabel;
     public Text nextLevelLabel;
+
+    // Game Over GUI
+    public Text scoreLabelText;
+    public Text bestLabelText;
 
 
     private void Awake()
@@ -118,7 +122,11 @@ public class GameManager : MonoBehaviour
 
         // Score
         // TODO High Score check here and display score gameover screen
-        
+        scoreManger.IsItHighScore();
+        scoreLabelText.text = scoreManger.GetCurrentScore();
+        bestLabelText.text = scoreManger.GetBestScore();
+
+
     }
 
     public void LevelComplete()

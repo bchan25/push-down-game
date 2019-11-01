@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private int currentScore = 0;
 
+    private int bestScore = 0;
+
     // GUI
     public Text scoreLabel;
 
@@ -33,8 +35,21 @@ public class ScoreManager : MonoBehaviour
         scoreLabel.text = currentScore.ToString();
     }
 
-    public bool IsItHighScore()
+    public void IsItHighScore()
     {
-        return false;
+        if(currentScore > bestScore)
+        {
+            bestScore = currentScore;
+        }
+    }
+
+    public string GetCurrentScore()
+    {
+        return currentScore.ToString();
+    }
+
+    public string GetBestScore()
+    {
+        return bestScore.ToString();
     }
 }
