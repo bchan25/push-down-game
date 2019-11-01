@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     [SerializeField]
     private LevelManager levelManager;
+    [SerializeField]
+    private ScoreManager scoreManger;
 
     [SerializeField]
     private int targetFrameRate = 30;
@@ -30,9 +32,14 @@ public class GameManager : MonoBehaviour
     // store the recent position of the finish line
     Vector3 lastPos;
 
-    // GUI
+    // Game GUI
     public Text currentLevelLabel;
     public Text nextLevelLabel;
+
+    // Game Over GUI
+    public Text scoreLabelText;
+    public Text bestLabelText;
+
 
     private void Awake()
     {
@@ -112,6 +119,14 @@ public class GameManager : MonoBehaviour
         playerController.DisableTouch();
         sceneManager.GameGuiDisable();
         sceneManager.GameOverEnable();
+
+        // Score
+        // TODO High Score check here and display score gameover screen
+        scoreManger.IsItHighScore();
+        scoreLabelText.text = scoreManger.GetCurrentScore();
+        bestLabelText.text = scoreManger.GetBestScore();
+
+
     }
 
     public void LevelComplete()
@@ -140,7 +155,10 @@ public class GameManager : MonoBehaviour
 
         // Destroy Level
         levelManager.DestroyCurrentLevel();
-       
+
+        // Reset Score
+        scoreManger.ResetScore();
+
         // Prepare Game
         PrepareGame();
         
