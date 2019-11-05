@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _instance;
+    public static GameManager Instance;
 
     // References
     [SerializeField]
@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
         }
         else
         {

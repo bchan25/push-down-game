@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        if (!GameManager._instance.startGame)
+        if (!GameManager.Instance.startGame)
             return;
 
         if (canTouch)
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Obstacle"))
         {
-            GameManager._instance.GameOver();
+            GameManager.Instance.GameOver();
             // Set Active
             gameObject.SetActive(false);
         }

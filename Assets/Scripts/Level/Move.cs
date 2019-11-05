@@ -10,7 +10,7 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        if (GameManager._instance.startGame)
+        if (GameManager.Instance.startGame)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
