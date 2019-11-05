@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             // Update the progress bar * 1 give value 0 to 1
             progressBar.value = (distanceTravelled / distance) * 1;
         }
-        
+
     }
 
     // Game States
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         nextLevelLabel.text = levelManager.GetNextLevel();
 
         Time.timeScale = 1f;
-        
+
     }
 
     public void GameOver()
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
         // Prepare Game
         PrepareGame();
-        
+
     }
 
     public void NextLevel()
