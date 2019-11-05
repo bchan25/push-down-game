@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         startGame = true;
-        playerController.SetOnTouch();
+        playerController.SetTouchOn();
         sceneManager.MainMenuDisable();
         sceneManager.GameGuiEnable();
 

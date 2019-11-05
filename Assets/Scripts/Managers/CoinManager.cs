@@ -14,11 +14,11 @@ public class CoinManager : MonoBehaviour
 
     private void Start()
     {
-        Reset();
+        ResetCoins();
         UpdateLabel();
     }
 
-    private void Reset()
+    private void ResetCoins()
     {
         // Testing need to change when there is a saving system
         coins = initialCoins;

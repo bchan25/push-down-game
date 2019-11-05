@@ -16,61 +16,72 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     private GameObject characterSelectionCanvas;
 
+    private void TurnOnCanvas(GameObject canvas)
+    {
+        canvas.SetActive(true);
+    }
+
+    private void TurnOffCanvas(GameObject canvas)
+    {
+        canvas.SetActive(false);
+    }
+
+
     // Main Menu
     public void MainMenuEnable()
     {
-        mainMenuCanvas.SetActive(true);
+        TurnOnCanvas(mainMenuCanvas);
     }
 
     public void MainMenuDisable()
     {
-        mainMenuCanvas.SetActive(false);
+        TurnOffCanvas(mainMenuCanvas);
     }
 
     // Game Over
     public void GameOverEnable()
     {
-        gameOverCanvas.SetActive(true);
+        TurnOnCanvas(gameOverCanvas);
     }
 
     public void GameOverDisable()
-    {
-        gameOverCanvas.SetActive(false);
+    { 
+        TurnOffCanvas(gameOverCanvas);
     }
 
     // Level Complete
     public void LevelCompleteEnable()
     {
-        levelCompleteCanvas.SetActive(true);
+        TurnOnCanvas(levelCompleteCanvas);
     }
 
     public void LevelCompleteDisable()
     {
-        levelCompleteCanvas.SetActive(false);
+        TurnOffCanvas(levelCompleteCanvas);
     }
 
     // Game GUI
     
     public void GameGuiEnable()
     {
-        gameGuiCanvas.SetActive(true);
+        TurnOnCanvas(gameGuiCanvas);
     }
 
     public void GameGuiDisable()
     {
-        gameGuiCanvas.SetActive(false);
+        TurnOffCanvas(gameGuiCanvas);
     }
 
     // Character Selection
 
     public void CharacterSelectionCanvasEnable()
     {
-        characterSelectionCanvas.SetActive(true);
+        TurnOnCanvas(characterSelectionCanvas);
     }
 
     public void CharacterSelectionCanvasDisable()
     {
-        characterSelectionCanvas.SetActive(false);
+        TurnOffCanvas(characterSelectionCanvas);
     }
 
 }
