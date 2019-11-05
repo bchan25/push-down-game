@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
+    [SerializeField]
+    private UIManager uiManager;
 
     private int initialCoins = 0;
     private int coins;
 
-    [SerializeField]
-    private Text coinLabel;
 
     private void Start()
     {
         ResetCoins();
-        UpdateLabel();
+        uiManager.UpdateCoinLabel();
     }
 
     private void ResetCoins()
@@ -37,7 +37,7 @@ public class CoinManager : MonoBehaviour
         }
 
         coins -= amount;
-        UpdateLabel();
+        uiManager.UpdateCoinLabel();
         return true;
     }
 
@@ -46,9 +46,10 @@ public class CoinManager : MonoBehaviour
         return coins;
     }
 
-    public void UpdateLabel()
+    public string GetCurrentCoins()
     {
-        coinLabel.text = coins.ToString();
+        return coins.ToString();
     }
+
 
 }

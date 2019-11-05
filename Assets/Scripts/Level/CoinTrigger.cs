@@ -7,6 +7,7 @@ public class CoinTrigger : MonoBehaviour
 
     // Reference to CoinManager
     private CoinManager coinManager;
+    private UIManager uiManager;
 
     // Coin value
     [SerializeField]
@@ -15,6 +16,7 @@ public class CoinTrigger : MonoBehaviour
     void Start()
     {
         coinManager = FindObjectOfType<CoinManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
 
@@ -23,7 +25,7 @@ public class CoinTrigger : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             coinManager.Add(coinValue);
-            coinManager.UpdateLabel();
+            uiManager.UpdateCoinLabel();
             Destroy(gameObject);
         }
     }

@@ -8,31 +8,29 @@ public class ScoreManager : MonoBehaviour
     // Reference
     [SerializeField]
     private LevelManager levelManager;
+    [SerializeField]
+    private UIManager uiManager;
+
 
     [SerializeField]
     private int currentScore = 0;
 
     private int bestScore = 0;
 
-    // GUI
-    public Text scoreLabel;
 
-    private void Start()
-    {
-        scoreLabel.text = currentScore.ToString();
-    }
+  
 
     public void AddScore()
     {
         currentScore += levelManager.GetCurrentLevelInt();
-        scoreLabel.text = currentScore.ToString();
+        uiManager.UpdateScoreLabel();
     }
 
     // Game Over
     public void ResetScore()
     {
         currentScore = 0;
-        scoreLabel.text = currentScore.ToString();
+        uiManager.UpdateScoreLabel();
     }
 
     public void IsItHighScore()
