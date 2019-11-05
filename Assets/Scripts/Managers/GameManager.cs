@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
     public bool startGame = false;
 
+    // TODO: GUI MANAGER
+
     // Progress Bar
     public Slider progressBar;
     // Distance from the start
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Hold the distance travel of the finish line
     float distanceTravelled = 0;
     // store the recent position of the finish line
-    Vector3 lastPos;
+    Vector3 finishLineLastPos;
 
     // Game GUI
     public Text currentLevelLabel;
@@ -65,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         if (startGame)
         {
-            distanceTravelled += Vector3.Distance(levelManager.GetTheFinishLine().position, lastPos);
-            lastPos = levelManager.GetTheFinishLine().position;
+            distanceTravelled += Vector3.Distance(levelManager.GetTheFinishLine().position, finishLineLastPos);
+            finishLineLastPos = levelManager.GetTheFinishLine().position;
             // Update the progress bar * 1 give value 0 to 1
             progressBar.value = (distanceTravelled / distance) * 1;
         }
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
 
         // Process Bar
         distance = Vector3.Distance(playerController.transform.position, levelManager.GetTheFinishLine().position);
-        lastPos = levelManager.GetTheFinishLine().position;
+        finishLineLastPos = levelManager.GetTheFinishLine().position;
 
     }
 

@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3bd80d4708f49fb9f2755e1cd76d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels:
+  levelPrefabs:
   - {fileID: 1163787345790660738, guid: d5654a0cccf6a4759bad639a2806862d, type: 3}
   - {fileID: 1790656343568626501, guid: f6172b32ac49840bfbf26053ce3fa571, type: 3}
   currentLevel: 1

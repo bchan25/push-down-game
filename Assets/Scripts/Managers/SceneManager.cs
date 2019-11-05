@@ -5,11 +5,16 @@ using UnityEngine;
 public class SceneManager : MonoBehaviour
 {
 
-    public GameObject mainMenuCanvas;
-    public GameObject gameOverCanvas;
-    public GameObject levelCompleteCanvas;
-    public GameObject gameGuiCanvas;
-    public GameObject characterSelectionCanvas;
+    [SerializeField]
+    private GameObject mainMenuCanvas;
+    [SerializeField]
+    private GameObject gameOverCanvas;
+    [SerializeField]
+    private GameObject levelCompleteCanvas;
+    [SerializeField]
+    private GameObject gameGuiCanvas;
+    [SerializeField]
+    private GameObject characterSelectionCanvas;
 
     // Main Menu
     public void MainMenuEnable()

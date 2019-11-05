@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> levels;
+    private List<GameObject> levelPrefabs;
 
     // The level to choose from array
     private int levelIndex = 0;
@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
     private int nextLevel = 2;
     
 
-    public GameObject spawnLevel;
+    private GameObject spawnLevel;
 
 
     // Progress Bar
@@ -27,16 +27,16 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        if(levelIndex >= levels.Count)
+        if(levelIndex >= levelPrefabs.Count)
         {
             Debug.Log("Complete whole game");
             // Random a level
-            levelIndex = Random.Range(0, levels.Count);
+            levelIndex = Random.Range(0, levelPrefabs.Count);
         }
 
         
 
-        spawnLevel = Instantiate(levels[levelIndex], levels[levelIndex].transform.position, levels[levelIndex].transform.rotation);
+        spawnLevel = Instantiate(levelPrefabs[levelIndex], levelPrefabs[levelIndex].transform.position, levelPrefabs[levelIndex].transform.rotation);
         finishLine = spawnLevel.transform.Find("Finish Line");
         
     }
