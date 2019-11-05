@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController _instance;
+    public static PlayerController Instance;
 
     [SerializeField]
     private Vector3 _startPos;
@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
         }
         else
         {
@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Obstacle"))
         {
             GameManager._instance.GameOver();
-            //Destroy(gameObject);
             // Set Active
             gameObject.SetActive(false);
         }

@@ -29,12 +29,16 @@ public class CoinManager : MonoBehaviour
         coins += amount;
     }
 
-    public void Remove(int amount)
+    public bool Remove(int amount)
     {
         if (amount > coins)
-            return;
+        {
+            return false;
+        }
 
         coins -= amount;
+        UpdateLabel();
+        return true;
     }
 
     public int GetCoinTotal()
